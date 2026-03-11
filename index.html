@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentRoll AI Analyzer</title>
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="app">
+  <!-- ═══ SIDEBAR ═══ -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+        <path d="M8 12h16M8 16h10M8 20h13M22 14v8l4-4-4-4z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>RentRoll AI</h1>
+        <span>Marina Analyzer</span>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-label">Analysis</div>
+
+      <button class="nav-item active" data-page="import" onclick="navigateTo('import')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Data Import
+      </button>
+
+      <button class="nav-item" data-page="cleanup" onclick="navigateTo('cleanup')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Data Cleanup
+      </button>
+
+      <button class="nav-item" data-page="dashboard" onclick="navigateTo('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+
+      <div class="nav-section-label">Deep Dive</div>
+
+      <button class="nav-item" data-page="tenants" onclick="navigateTo('tenants')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Tenant Analysis
+      </button>
+
+      <button class="nav-item" data-page="seasonal" onclick="navigateTo('seasonal')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        Seasonal Timing
+      </button>
+
+      <button class="nav-item" data-page="demographics" onclick="navigateTo('demographics')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg>
+        Demographics
+      </button>
+
+      <button class="nav-item" data-page="insights" onclick="navigateTo('insights')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-2 13.7V18h4v-2.3A7 7 0 0 0 12 2z"/><line x1="10" y1="21" x2="14" y2="21"/></svg>
+        AI Insights
+      </button>
+
+      <div class="nav-section-label">Export</div>
+
+      <button class="nav-item" data-page="export" onclick="navigateTo('export')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Excel Export
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="header">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <span class="header-title" id="pageTitle">Data Import</span>
+    <div class="header-right">
+      <span class="header-badge" id="fileStatus">No file loaded</span>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main" id="mainContent">
+
+    <!-- ── PAGE: Data Import ── -->
+    <div class="page active" id="page-import">
+      <div class="section-header">Import Rent Roll</div>
+      <p class="section-sub">Upload a rent roll in CSV, Excel, or PDF format. The analyzer will auto-detect column mappings and parse your data.</p>
+
+      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <h3>Drop file here or click to browse</h3>
+        <p>Supports most rent roll formats with auto column detection</p>
+        <div class="upload-formats">
+          <span>CSV</span>
+          <span>XLSX</span>
+          <span>XLS</span>
+          <span>PDF</span>
+        </div>
+      </div>
+      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.pdf" style="display:none" onchange="handleFileUpload(event)">
+
+      <!-- Post-upload info -->
+      <div id="importResults" style="display:none">
+        <div class="file-info" id="fileInfoCard"></div>
+        <div class="card">
+          <div class="card-header">Column Mapping</div>
+          <div class="mapping-grid" id="mappingGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Data Cleanup ── -->
+    <div class="page" id="page-cleanup">
+      <div class="section-header">Data Cleanup</div>
+      <p class="section-sub">Automatic data quality checks and AI-powered analysis to flag issues in your rent roll.</p>
+
+      <div id="cleanupContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          <h3>Upload data first</h3>
+          <p>Import a rent roll to see cleanup results</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Dashboard ── -->
+    <div class="page" id="page-dashboard">
+      <div id="dashboardContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll to see the dashboard</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Tenant Analysis ── -->
+    <div class="page" id="page-tenants">
+      <div id="tenantsContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll to see tenant analysis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Seasonal Timing ── -->
+    <div class="page" id="page-seasonal">
+      <div id="seasonalContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll to see seasonal analysis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Tenant Demographics ── -->
+    <div class="page" id="page-demographics">
+      <div id="demographicsContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll with address or home value data to see demographic analysis</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: AI Insights ── -->
+    <div class="page" id="page-insights">
+      <div id="insightsContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a7 7 0 0 0-2 13.7V18h4v-2.3A7 7 0 0 0 12 2z"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll to generate AI insights</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Excel Export ── -->
+    <div class="page" id="page-export">
+      <div id="exportContent">
+        <div class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <h3>No data loaded</h3>
+          <p>Import a rent roll to enable export</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay" style="display:none">
+  <div class="loading-card">
+    <div class="spinner"></div>
+    <p id="loadingText">Processing file...</p>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="./app.js"></script>
+</body>
+</html>
