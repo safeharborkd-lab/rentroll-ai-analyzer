@@ -1176,26 +1176,29 @@ async def upload_file(request: Request, file: UploadFile = File(...)):
                 # Already parsed into standard format
                 mapping = {col: col for col in raw_df.columns if col in COLUMN_MAP or col in ["tenant", "unit", "unit_type", "monthly_rent", "market_rent", "status", "property"]}
                 # Fill missing standard fields
-                if "sqft" not in raw_df.columns:
-                    raw_df["sqft"] = np.nan
-                if "lease_start" not in raw_df.columns:
-                    raw_df["lease_start"] = pd.NaT
-                if "lease_end" not in raw_df.columns:
-                    raw_df["lease_end"] = pd.NaT
+                for col, default in [
+                    ("sqft", np.nan), ("loa", np.nan),
+                    ("lease_start", pd.NaT), ("lease_end", pd.NaT),
+                    ("market_rent", np.nan), ("status", "Occupied"),
+                    ("unit_type", "Unit"), ("property", "Property"),
+                    ("tenant", ""), ("rent_per_sqft", np.nan),
+                    ("rent_per_loa", np.nan), ("months_remaining", np.nan),
+                    ("address", ""), ("zip_code", ""),
+                    ("home_value", np.nan),
+                    ("boat_make", ""), ("boat_model", ""), ("boat_year", ""),
+                ]:
+                    if col not in raw_df.columns:
+                        raw_df[col] = default
                 if "annual_rent" not in raw_df.columns:
                     raw_df["annual_rent"] = raw_df["monthly_rent"] * 12
                 if "loss_to_lease" not in raw_df.columns:
-                    if raw_df["market_rent"].notna().any():
+                    if "market_rent" in raw_df.columns and raw_df["market_rent"].notna().any():
                         raw_df["loss_to_lease"] = np.where(
                             (raw_df["market_rent"] > 0) & (raw_df["status"] == "Occupied"),
                             raw_df["market_rent"] - raw_df["monthly_rent"], 0
                         )
                     else:
                         raw_df["loss_to_lease"] = 0.0
-                if "rent_per_sqft" not in raw_df.columns:
-                    raw_df["rent_per_sqft"] = np.nan
-                if "months_remaining" not in raw_df.columns:
-                    raw_df["months_remaining"] = np.nan
                 if "exp_bucket" not in raw_df.columns:
                     raw_df["exp_bucket"] = "No End Date"
                 clean_df = raw_df
